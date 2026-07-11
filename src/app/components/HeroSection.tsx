@@ -14,7 +14,7 @@ export function HeroSection({ onJoinClick }: HeroSectionProps) {
       className="relative bg-gradient-to-br from-[#363636] to-[#4a4a4a] text-white py-28 px-6 lg:px-8"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <img src={logoImage} alt="YAN Logo" className="h-28 w-auto mx-auto mb-8" />
+        <img src={logoImage} alt="YAN Logo" className="h-36 w-auto mx-auto mb-8" />
 
         <h1 className="text-4xl md:text-6xl font-bold mb-5 leading-tight">
           Youth Awareness Network
