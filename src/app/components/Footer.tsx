@@ -9,7 +9,14 @@ const SOCIAL_LINKS = [
   { icon: Link, href: 'https://linktr.ee/youthawarenessnetwork', label: 'Linktree' },
 ];
 
-const QUICK_LINKS = ['Home', 'About Us', 'Mission', 'Activities', 'Join Us', 'Contact'];
+const QUICK_LINKS = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About Us' },
+  { id: 'mission', label: 'Mission' },
+  { id: 'activities', label: 'Activities' },
+  { id: 'join', label: 'Join Us' },
+  { id: 'contact', label: 'Contact' },
+];
 
 export function Footer() {
   return (
@@ -55,9 +62,9 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-5">Quick Links</h3>
             <ul className="space-y-3 text-gray-300">
               {QUICK_LINKS.map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase().replace(' ', '')}`} className="hover:text-white transition-colors">
-                    {item}
+                <li key={item.id}>
+                  <a href={`#${item.id}`} className="hover:text-white transition-colors">
+                    {item.label}
                   </a>
                 </li>
               ))}
