@@ -91,16 +91,9 @@ export function ContactSection() {
                 href={item.href}
                 target={item.href.startsWith('http') ? '_blank' : undefined}
                 rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="text-gray-600 hover:text-[#363636] transition-colors break-words"
+                className="text-gray-600 hover:text-[#363636] transition-colors text-sm whitespace-nowrap"
               >
-                {item.content.includes('@') ? (
-                  <>
-                    {item.content.split('@')[0]}@<wbr />
-                    {item.content.split('@')[1]}
-                  </>
-                ) : (
-                  item.content
-                )}
+                {item.content}
               </a>
             ) : (
               <p className="text-gray-600">{item.content}</p>
