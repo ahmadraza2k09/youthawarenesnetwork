@@ -4,17 +4,17 @@ import { SectionHeader } from './SectionHeader';
 const PILLARS = [
   {
     icon: Users,
-    title: 'Youth-Led',
+    title: 'Youth Led',
     description: 'Driven by young individuals who understand real challenges, ensuring relevant solutions and authentic impact.',
   },
   {
     icon: Award,
-    title: 'Action-Oriented',
-    description: 'Focused on delivering practical awareness, structured guidance, and real opportunities—not just ideas.',
+    title: 'Action Oriented',
+    description: 'Focused on delivering practical awareness, structured guidance, and real opportunities, not just ideas.',
   },
   {
     icon: TrendingUp,
-    title: 'Growth-Focused',
+    title: 'Growth Focused',
     description: 'Committed to supporting academic, personal, and professional development through continuous learning and exposure.',
   },
 ];
@@ -30,10 +30,10 @@ export function AboutSection() {
         />
 
         <div className="bg-gray-50 p-8 md:p-10 rounded-xl border border-gray-200 mb-16 max-w-4xl mx-auto">
-          <p className="text-gray-700 text-lg mb-5 leading-relaxed">
-            <span className="text-[#363636] font-semibold">Youth Awareness Network (YAN)</span> is a youth-led initiative focused on providing free access to awareness, guidance, and global opportunities for students, especially those with limited resources or direction.
+          <p className="text-gray-700 text-lg mb-5 leading-relaxed text-center">
+            <span className="text-[#363636] font-semibold">Youth Awareness Network (YAN)</span> is a youth led initiative focused on providing free access to awareness, guidance, and global opportunities for students, especially those with limited resources or direction.
           </p>
-          <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+          <p className="text-gray-700 text-lg mb-6 leading-relaxed text-center">
             We support young individuals in understanding their academic and career paths, building strong profiles, and connecting with international peers through structured programs and virtual exchanges.
           </p>
           <p className="font-accent text-[#363636] text-2xl font-semibold text-center">

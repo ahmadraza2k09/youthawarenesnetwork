@@ -5,7 +5,7 @@ const ACTIVITIES = [
   {
     icon: MessageCircle,
     title: 'Awareness Sessions',
-    description: 'Interactive sessions covering education, careers, and scholarships to provide clear direction and informed decision-making.',
+    description: 'Interactive sessions covering education, careers, and scholarships to provide clear direction and informed decision making.',
   },
   {
     icon: BookOpen,
@@ -15,7 +15,7 @@ const ACTIVITIES = [
   {
     icon: Megaphone,
     title: 'Digital Outreach',
-    description: 'Strategic online initiatives to share relevant information, opportunities, and student-focused insights.',
+    description: 'Strategic online initiatives to share relevant information, opportunities, and student focused insights.',
   },
   {
     icon: Users,
@@ -66,7 +66,7 @@ export function ActivitiesSection() {
 
         <div className="bg-[#363636] text-white rounded-xl p-8 text-center">
           <p className="text-lg">
-            <span className="font-accent font-semibold">Note:</span> Our journey is just beginning—more impactful activities will be added as YAN grows and expands its reach!
+            <span className="font-accent font-semibold">Note:</span> Our journey is just beginning. More impactful activities will be added as YAN grows and expands its reach!
           </p>
         </div>
       </div>

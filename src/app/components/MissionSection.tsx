@@ -5,7 +5,7 @@ const MISSIONS = [
   {
     icon: BookOpen,
     title: 'Education & Critical Thinking',
-    description: 'Equipping students with clear knowledge, direction, and decision-making skills for academic and career growth.',
+    description: 'Equipping students with clear knowledge, direction, and decision making skills for academic and career growth.',
   },
   {
     icon: Users,
@@ -40,17 +40,15 @@ export function MissionSection() {
             return (
               <div
                 key={mission.title}
-                className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-md transition-shadow duration-200"
+                className="bg-white rounded-xl p-8 text-center border border-gray-200 hover:shadow-md transition-shadow duration-200"
               >
-                <div className="flex items-start gap-5">
-                  <div className="bg-[#363636] p-4 rounded-xl flex-shrink-0">
+                <div className="flex justify-center mb-5">
+                  <div className="bg-[#363636] p-4 rounded-xl">
                     <Icon className="text-white" size={28} />
                   </div>
-                  <div>
-                    <h3 className="text-[#1F2937] text-xl font-bold mb-2">{mission.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{mission.description}</p>
-                  </div>
                 </div>
+                <h3 className="text-[#1F2937] text-xl font-bold mb-2">{mission.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{mission.description}</p>
               </div>
             );
           })}

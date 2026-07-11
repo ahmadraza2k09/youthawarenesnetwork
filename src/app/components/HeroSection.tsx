@@ -5,7 +5,7 @@ interface HeroSectionProps {
   onJoinClick: () => void;
 }
 
-const TRUST_ITEMS = ['Youth-led', 'Free access', 'Global exposure'];
+const TRUST_ITEMS = ['Youth led', 'Free access', 'Global exposure'];
 
 export function HeroSection({ onJoinClick }: HeroSectionProps) {
   return (
@@ -25,7 +25,7 @@ export function HeroSection({ onJoinClick }: HeroSectionProps) {
         </p>
 
         <p className="text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8">
-          We are a youth-led platform committed to providing free access to awareness, guidance, and international opportunities. Our mission is to equip students with the knowledge, exposure, and direction they need to grow beyond limitations.
+          We are a youth led platform committed to providing free access to awareness, guidance, and international opportunities. Our mission is to equip students with the knowledge, exposure, and direction they need to grow beyond limitations.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-gray-200 mb-10">

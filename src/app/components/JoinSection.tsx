@@ -10,7 +10,7 @@ const JOIN_CARDS = [
   {
     icon: Target,
     title: 'Why Join YAN?',
-    items: ['Build leadership skills', 'Create social impact', 'Learn through real activities', 'Network with like-minded youth'],
+    items: ['Build leadership skills', 'Create social impact', 'Learn through real activities', 'Network with like minded youth'],
   },
   {
     icon: Users,
