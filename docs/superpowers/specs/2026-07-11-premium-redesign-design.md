@@ -10,6 +10,13 @@ so it reads as a professionally handcrafted, premium WordPress-theme-quality sit
 This is a visual/structural redesign of the existing 8 components — not a content
 or feature rewrite.
 
+**Update (per user direction after initial approval):** all animation is removed,
+not just tamed. The site must not use the `motion/react` library at all — every
+interactive state (hover, focus) uses plain CSS transitions only, matching how a
+real WordPress theme behaves (no JS animation on scroll, load, or hover). The
+overall feel should read unmistakably as a **non-profit organization** site —
+calm, trustworthy, substantive — not a flashy product/startup template.
+
 ## Scope
 
 In scope:
@@ -23,6 +30,7 @@ Out of scope:
 - New pages/routes
 - Backend/API changes
 - Garet font licensing (substituted with a free look-alike, see Typography below)
+- Removing the unused `motion` npm dependency is in scope as cleanup (see Motion Principles)
 
 ## Design System Foundation
 
@@ -71,53 +79,61 @@ touches all 5 content sections.
 
 **Header** — Logo left, nav links right, "Join Us" visually distinguished as a filled
 CTA button separate from nav links (currently just another nav item). Keep sticky
-shrink-on-scroll behavior. Drop the staggered per-item fade-in on initial page load
-(runs once, adds no ongoing value, reads as template filler).
+shrink-on-scroll behavior (plain CSS, no motion library). No fade-in/stagger on
+page load — the header is simply present from first paint, as on a real WordPress site.
 
 **Hero** — Keep dark charcoal background and logo. Remove: the infinite pulsing
 glow/drop-shadow filter animation on the logo, the two animated blurred circle
-"blob" backgrounds. Keep one clean one-time entrance animation (fade + slide-up).
-Add a small trust/stat row styled as a clean inline list (e.g. "Youth-led · Free
+"blob" backgrounds, and any entrance animation — content is present immediately
+on render. Add a small trust/stat row styled as a clean inline list (e.g. "Youth-led · Free
 access · Global reach") replacing the floating sparkle-icon + bouncing arrow CTA
-button treatment. CTA button keeps its function, simplified to a static solid
-button with a standard hover state (no shimmer sweep, no infinite arrow bounce).
+button treatment. CTA button keeps its function, styled as a static solid
+button with a plain CSS `:hover` background-color change (no shimmer sweep, no arrow bounce).
 
 **Cards** (About pillars, Mission list, Activities grid, Join info cards, Contact
 method cards) — One shared card visual style: consistent padding (using the new
 spacing scale), one icon-box treatment (solid charcoal rounded square/circle),
-hover state limited to a subtle lift + shadow increase (no 360° icon spin, no
-gradient-sweep overlay layers, no animated border glow).
+hover state limited to a subtle CSS `transition` on shadow/border (no lift/translate
+animation, no 360° icon spin, no gradient-sweep overlay layers, no animated border glow).
 
 **Forms** (Join application, Contact form) — One shared input/textarea/button
-style using the new radius/shadow scale. Focus state simplified to a clean
-border-color + ring change (drop the animated glow-inset layer). Formspree
-submission logic (`fetch` calls, endpoint, success/error state handling)
-unchanged.
+style using the new radius/shadow scale. Focus state is a plain CSS
+border-color + ring change on `:focus` (drop the JS-driven animated glow-inset
+layer). Formspree submission logic (`fetch` calls, endpoint, success/error
+state handling) unchanged.
 
 **Footer** — Keep the existing 3-column widget layout (logo+tagline+social,
-quick links, contact info) — this is already the right convention. Tone down
-the blur-glow decorative circle and the backdrop-blur social icon buttons to
-flat, consistent-radius icon buttons matching the new card icon-box style.
+quick links, contact info) — this is already the right convention. Remove
+the blur-glow decorative circle and the backdrop-blur social icon buttons;
+replace with flat, consistent-radius icon buttons matching the new card
+icon-box style, with a plain CSS hover background-color change.
 
 **Loading screen** (`App.tsx`) — Remove the full-page spinning-circle loader
-entirely. Page renders immediately; hero content gets one brief fade-in on
-mount instead of gating the whole page behind an 800ms artificial delay.
+entirely. Page renders immediately with no fade-in gate — matching how a
+real WordPress page loads.
 
 ## Motion Principles (applies across all components)
 
-- Scroll-triggered reveals: fade + slide-up, once per element, no stagger
-  chains longer than ~4 items.
-- Hover states: lift (translateY) + shadow change only — no rotation, no
-  infinite loops, no gradient position animation.
-- No `repeat: Infinity` animations anywhere except where already justified
-  (none currently are — all infinite loops are removed).
-- Page load: no artificial delay/spinner gate.
+- **No animation library.** The `motion/react` import is removed from every
+  component; the now-unused `motion` npm dependency is uninstalled.
+- **No scroll-triggered reveals.** Content is present as soon as it renders —
+  no fade-in/slide-up-on-scroll anywhere.
+- **No entrance/load animation.** Page and section content appears immediately,
+  no fade gate.
+- **Hover/focus states only, plain CSS.** Buttons, links, cards, and form
+  inputs may use ordinary CSS `transition-colors`/`transition-shadow` for
+  hover and focus feedback (e.g. `hover:shadow-md`, `hover:bg-[#4a4a4a]`,
+  `focus:ring-2`) — this is standard, non-flashy interactive feedback found
+  on every professional site, not the kind of animation being removed.
+- **Absolutely no**: rotation, infinite loops, gradient-position animation,
+  glow/blur pulsing, staggered reveals, or bounce/shimmer effects.
 
 ## Testing/Verification
 
 - Visual: run `npm run dev`, walk through every section at desktop and mobile
-  widths, confirm consistent spacing/typography/shadows and no leftover
-  infinite-loop animations.
+  widths, confirm consistent spacing/typography/shadows, and confirm no
+  `motion/react` import remains anywhere in `src/`.
 - Functional: confirm both forms (Join, Contact) still submit successfully to
   the existing Formspree endpoint and show success/error states correctly.
-- No new console errors/warnings; `npm run build` succeeds.
+- No new console errors/warnings; `npm run build` succeeds; `npm run dev`
+  starts cleanly after `motion` is removed from `package.json`.
