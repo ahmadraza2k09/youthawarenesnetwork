@@ -94,19 +94,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-300">
+        <div className="border-t border-white/10 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-gray-300 text-sm">
             <div className="flex items-center gap-2">
-              <Lightbulb className="text-white" size={20} />
+              <Lightbulb className="text-white" size={16} />
               <p>We believe informed youth can build a better society</p>
             </div>
             <div className="flex items-center gap-2">
               <span>Made with</span>
-              <Heart className="text-red-500" size={16} fill="currentColor" />
+              <Heart className="text-red-500" size={14} fill="currentColor" />
               <span>by Youth Awareness Network</span>
             </div>
           </div>
-          <p className="text-center text-gray-500 mt-6 text-sm">
+          <p className="text-center text-gray-500 mt-4 text-xs">
             © {new Date().getFullYear()} Youth Awareness Network. All rights reserved.
           </p>
         </div>
