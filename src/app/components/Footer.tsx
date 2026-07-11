@@ -1,207 +1,108 @@
 import { Heart, Lightbulb, Mail, MessageCircle, MapPin, Linkedin, Instagram, Facebook, Youtube, Link } from 'lucide-react';
-import { motion } from 'motion/react';
 import logoImage from '../../assets/826164d80fd732187bfaf088c09dae7c138832fd.png';
 
+const SOCIAL_LINKS = [
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/youthawarenessnetwork/', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/youthawarenessnetwork', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/Youthwarenessnetwork/', label: 'Facebook' },
+  { icon: Youtube, href: 'https://www.youtube.com/@youthawarenessnetwork', label: 'YouTube' },
+  { icon: Link, href: 'https://linktr.ee/youthawarenessnetwork', label: 'Linktree' },
+];
+
+const QUICK_LINKS = ['Home', 'About Us', 'Mission', 'Activities', 'Join Us', 'Contact'];
+
 export function Footer() {
-  const socialLinks = [
-    { icon: Linkedin, href: 'https://www.linkedin.com/company/youthawarenessnetwork/', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://www.instagram.com/youthawarenessnetwork', label: 'Instagram' },
-    { icon: Facebook, href: 'https://www.facebook.com/Youthwarenessnetwork/', label: 'Facebook' },
-    { icon: Youtube, href: 'https://www.youtube.com/@youthawarenessnetwork', label: 'YouTube' },
-    { icon: Link, href: 'https://linktr.ee/youthawarenessnetwork', label: 'Linktree' },
-  ];
-
   return (
-    <footer className="bg-gradient-to-br from-[#2a2a2a] to-[#363636] text-white py-16 px-4 relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <motion.div
-          className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], x: [0, 50, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <footer className="bg-[#2a2a2a] text-white py-16 px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
-          {/* Logo and tagline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <motion.img 
-                src={logoImage} 
-                alt="YAN Logo" 
-                className="h-14 w-auto"
-                style={{ mixBlendMode: 'lighten' }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="font-bold text-2xl">Youth Awareness Network</span>
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <img src={logoImage} alt="YAN Logo" className="h-11 w-auto" />
+              <span className="font-bold text-xl">Youth Awareness Network</span>
             </div>
-            <p className="text-gray-300 leading-relaxed text-lg">
+            <p className="text-gray-300 leading-relaxed mb-3">
               Empowering Youth with Knowledge, Skills, and Responsibility
             </p>
-            <motion.div 
-              className="flex items-center gap-2 mt-4 text-gray-300"
-              whileHover={{ x: 5 }}
-            >
-              <Lightbulb size={20} />
-              <p className="text-sm italic">Building informed minds, transforming societies</p>
-            </motion.div>
+            <div className="flex items-center gap-2 text-gray-400 text-sm italic mb-6">
+              <Lightbulb size={18} />
+              <p>Building informed minds, transforming societies</p>
+            </div>
 
-            {/* Social Media Links */}
-            <div className="mt-6">
+            <div>
               <p className="text-sm text-gray-400 mb-3">Connect with us:</p>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => {
+              <div className="flex gap-3">
+                {SOCIAL_LINKS.map((social) => {
                   const Icon = social.icon;
                   return (
-                    <motion.a
+                    <a
                       key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative group"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      whileHover={{ y: -5 }}
                       aria-label={social.label}
+                      className="bg-white/10 p-2.5 rounded-lg border border-white/10 hover:bg-white hover:border-white transition-colors group"
                     >
-                      <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm border border-white/20 transition-all group-hover:bg-white group-hover:border-white">
-                        <Icon className="text-white transition-colors group-hover:text-[#363636]" size={24} />
-                      </div>
-                      <motion.div
-                        className="absolute -inset-1 bg-white rounded-xl opacity-0 blur-md"
-                        whileHover={{ opacity: 0.3 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </motion.a>
+                      <Icon className="text-white group-hover:text-[#363636] transition-colors" size={20} />
+                    </a>
                   );
                 })}
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="font-bold text-xl mb-6 text-white">Quick Links</h3>
+          <div>
+            <h3 className="font-bold text-lg mb-5">Quick Links</h3>
             <ul className="space-y-3 text-gray-300">
-              {['Home', 'About Us', 'Mission', 'Activities', 'Join Us', 'Contact'].map((item, index) => (
-                <motion.li 
-                  key={item}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + index * 0.05 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.a 
-                    href={`#${item.toLowerCase().replace(' ', '')}`} 
-                    className="hover:text-white transition-colors inline-flex items-center gap-2 group"
-                    whileHover={{ x: 5 }}
-                  >
-                    <motion.span 
-                      className="w-0 h-0.5 bg-white group-hover:w-4 transition-all duration-300"
-                      whileHover={{ width: 16 }}
-                    />
+              {QUICK_LINKS.map((item) => (
+                <li key={item}>
+                  <a href={`#${item.toLowerCase().replace(' ', '')}`} className="hover:text-white transition-colors">
                     {item}
-                  </motion.a>
-                </motion.li>
+                  </a>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="font-bold text-xl mb-6 text-white">Get in Touch</h3>
+          <div>
+            <h3 className="font-bold text-lg mb-5">Get in Touch</h3>
             <ul className="space-y-4 text-gray-300">
-              <motion.li whileHover={{ x: 5 }} className="flex items-start gap-3">
-                <Mail size={20} className="flex-shrink-0 mt-1" />
-                <a 
-                  href="mailto:youthawarenessnetwork@gmail.com" 
-                  className="hover:text-white transition-colors break-all"
-                >
+              <li className="flex items-start gap-3">
+                <Mail size={18} className="flex-shrink-0 mt-1" />
+                <a href="mailto:youthawarenessnetwork@gmail.com" className="hover:text-white transition-colors break-all">
                   youthawarenessnetwork@gmail.com
                 </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }} className="flex items-center gap-3">
-                <MessageCircle size={20} className="flex-shrink-0" />
-                <a 
-                  href="https://wa.me/923405463601" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="hover:text-white transition-colors"
-                >
+              </li>
+              <li className="flex items-center gap-3">
+                <MessageCircle size={18} className="flex-shrink-0" />
+                <a href="https://wa.me/923405463601" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   +92 340 5463601
                 </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }} className="flex items-center gap-3">
-                <MapPin size={20} className="flex-shrink-0" />
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin size={18} className="flex-shrink-0" />
                 <span>Pakistan</span>
-              </motion.li>
+              </li>
             </ul>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div 
-          className="border-t border-gray-600 pt-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <motion.div 
-              className="flex items-center gap-3 text-gray-300"
-              whileHover={{ scale: 1.02 }}
-            >
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <Lightbulb className="text-white" size={24} />
-              </motion.div>
-              <p className="text-lg">We believe informed youth can build a better society</p>
-            </motion.div>
-            <motion.div 
-              className="flex items-center gap-2 text-gray-300"
-              whileHover={{ scale: 1.05 }}
-            >
+        <div className="border-t border-white/10 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-300">
+            <div className="flex items-center gap-2">
+              <Lightbulb className="text-white" size={20} />
+              <p>We believe informed youth can build a better society</p>
+            </div>
+            <div className="flex items-center gap-2">
               <span>Made with</span>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <Heart className="text-red-500" size={18} fill="currentColor" />
-              </motion.div>
+              <Heart className="text-red-500" size={16} fill="currentColor" />
               <span>by Youth Awareness Network</span>
-            </motion.div>
+            </div>
           </div>
-          <motion.p 
-            className="text-center text-gray-400 mt-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            viewport={{ once: true }}
-          >
+          <p className="text-center text-gray-500 mt-6 text-sm">
             © {new Date().getFullYear()} Youth Awareness Network. All rights reserved.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
     </footer>
   );
