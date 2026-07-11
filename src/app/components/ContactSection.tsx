@@ -1,13 +1,15 @@
-import { Mail, MessageCircle, MapPin, Send } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Send, Check } from 'lucide-react';
 import { useState } from 'react';
 import { SectionHeader } from './SectionHeader';
+
+const CONTACT_EMAIL = 'youthawarenessnetwork@gmail.com';
 
 const CONTACT_METHODS = [
   {
     icon: Mail,
     title: 'Email',
-    content: 'youthawarenessnetwork@gmail.com',
-    href: 'mailto:youthawarenessnetwork@gmail.com',
+    content: CONTACT_EMAIL,
+    href: `mailto:${CONTACT_EMAIL}`,
   },
   {
     icon: MessageCircle,
@@ -27,6 +29,17 @@ export function ContactSection() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable — the mailto: link is still the primary action.
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -176,11 +189,12 @@ export function ContactSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="mailto:youthawarenessnetwork@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
+              onClick={handleCopyEmail}
               className="inline-flex items-center justify-center gap-2 bg-white text-[#363636] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              <Mail size={18} />
-              Send Email
+              {emailCopied ? <Check size={18} /> : <Mail size={18} />}
+              {emailCopied ? 'Email Copied!' : 'Send Email'}
             </a>
             <a
               href="https://wa.me/923405463601"
