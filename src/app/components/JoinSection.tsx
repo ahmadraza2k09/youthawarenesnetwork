@@ -67,7 +67,7 @@ export function JoinSection({ onContactClick }: JoinSectionProps) {
   };
 
   return (
-    <section id="join" className="py-24 md:py-28 px-6 lg:px-8 bg-gray-50">
+    <section id="join" className="py-16 md:py-28 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Get Involved"
@@ -75,13 +75,13 @@ export function JoinSection({ onContactClick }: JoinSectionProps) {
           subtitle="If you're a student or young individual eager to learn, grow, and contribute to society, we welcome you to join Youth Awareness Network. Together, we create awareness and drive positive change."
         />
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
           {JOIN_CARDS.map((card) => {
             const Icon = card.icon;
             return (
               <div
                 key={card.title}
-                className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-md transition-shadow duration-200"
+                className="bg-white rounded-xl p-6 md:p-8 border border-gray-200 hover:shadow-md transition-shadow duration-200"
               >
                 <div className="flex justify-center mb-6">
                   <div className="bg-[#363636] p-4 rounded-xl">
@@ -102,7 +102,7 @@ export function JoinSection({ onContactClick }: JoinSectionProps) {
           })}
         </div>
 
-        <div className="max-w-2xl mx-auto bg-white rounded-xl p-8 md:p-10 border border-gray-200">
+        <div className="max-w-2xl mx-auto bg-white rounded-xl p-5 sm:p-8 md:p-10 border border-gray-200">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-[#1F2937] mb-2">Application Form</h3>
             <p className="text-gray-600">Fill out the form below to join our network</p>

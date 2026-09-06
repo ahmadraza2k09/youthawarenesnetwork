@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Calendar, User, Mail, Phone, MessageSquare, CheckCircle, GraduationCap, FileText, Compass, Globe, HelpCircle, Send, Copy, Check } from 'lucide-react';
+import { X, Calendar, User, Mail, Phone, MessageSquare, CheckCircle, GraduationCap, FileText, Compass, Globe, HelpCircle, Send } from 'lucide-react';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -33,20 +33,8 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const [linkCopied, setLinkCopied] = useState(false);
 
   if (!isOpen) return null;
-
-  const handleCopyFormLink = async () => {
-    const directLink = `${window.location.origin}${window.location.pathname}#consultation`;
-    try {
-      await navigator.clipboard.writeText(directLink);
-      setLinkCopied(true);
-      setTimeout(() => setLinkCopied(false), 2500);
-    } catch {
-      // clipboard fallback
-    }
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,7 +57,7 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div 
         className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
@@ -77,37 +65,26 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-10 my-4 sm:my-8 flex flex-col max-h-[92vh]">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-10 my-auto flex flex-col max-h-[90vh] sm:max-h-[85vh]">
         
         {/* Modal Header */}
-        <div className="bg-[#363636] text-white p-5 sm:p-6 relative flex-shrink-0">
+        <div className="bg-[#363636] text-white p-4 sm:p-6 relative flex-shrink-0">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Close modal"
           >
             <X size={20} />
           </button>
 
-          <div className="flex items-center justify-between gap-2 mb-2 pr-10">
-            <div className="inline-block px-3 py-1 rounded-md bg-white/10 text-gray-200 text-xs font-semibold uppercase tracking-wider">
-              Free 1-on-1 Session
-            </div>
-            <button
-              type="button"
-              onClick={handleCopyFormLink}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 hover:bg-white/20 text-gray-200 text-xs font-medium transition-colors"
-              title="Copy Direct Form Link"
-            >
-              {linkCopied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
-              <span>{linkCopied ? 'Link Copied!' : 'Copy Direct Link'}</span>
-            </button>
-          </div>
+          <span className="font-accent text-xs font-semibold uppercase tracking-widest text-emerald-400 block mb-1">
+            Youth Awareness Network
+          </span>
 
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1 font-sans">
             Book a Free Consultation
           </h2>
-          <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+          <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pr-8 sm:pr-10">
             Fill out your details below. You will be redirected directly to WhatsApp (+92 340 5463601) with a pre-filled request.
           </p>
         </div>
@@ -118,7 +95,7 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
             <div className="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 border border-green-200">
               <CheckCircle size={32} />
             </div>
-            <h3 className="text-xl font-bold text-[#1F2937] mb-2">
+            <h3 className="text-xl font-bold text-[#1F2937] mb-2 font-sans">
               Redirecting to WhatsApp...
             </h3>
             <p className="text-gray-600 text-sm max-w-md mx-auto mb-6 leading-relaxed">
@@ -128,19 +105,19 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
               href="https://wa.me/923405463601"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors shadow-md"
+              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors shadow-md"
             >
               <MessageSquare size={18} /> Open WhatsApp Directly
             </a>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1">
+          <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-3.5 sm:space-y-4 overflow-y-auto flex-1">
             
             {/* Input Row 1: Name & Phone */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1.5 flex items-center gap-1.5">
-                  <User size={14} className="text-gray-500" /> Full Name <span className="text-red-500">*</span>
+                <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
+                  <User size={13} className="text-gray-500" /> Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -148,13 +125,13 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
                   placeholder="e.g. Ayesha Khan"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-[#1F2937] text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all placeholder:text-gray-400"
+                  className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all placeholder:text-gray-400 font-sans"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1.5 flex items-center gap-1.5">
-                  <Phone size={14} className="text-gray-500" /> Phone / WhatsApp <span className="text-red-500">*</span>
+                <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
+                  <Phone size={13} className="text-gray-500" /> Phone / WhatsApp <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -162,34 +139,34 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
                   placeholder="+92 3XX XXXXXXX"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-[#1F2937] text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all placeholder:text-gray-400"
+                  className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all placeholder:text-gray-400 font-sans"
                 />
               </div>
             </div>
 
             {/* Input Row 2: Email & Time Slot */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1.5 flex items-center gap-1.5">
-                  <Mail size={14} className="text-gray-500" /> Email Address
+                <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
+                  <Mail size={13} className="text-gray-500" /> Email Address
                 </label>
                 <input
                   type="email"
                   placeholder="name@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-[#1F2937] text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all placeholder:text-gray-400"
+                  className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all placeholder:text-gray-400 font-sans"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1.5 flex items-center gap-1.5">
-                  <Calendar size={14} className="text-gray-500" /> Preferred Time Slot
+                <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
+                  <Calendar size={13} className="text-gray-500" /> Preferred Time Slot
                 </label>
                 <select
                   value={formData.timeSlot}
                   onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-[#1F2937] text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all"
+                  className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all font-sans"
                 >
                   {TIME_SLOTS.map((slot) => (
                     <option key={slot} value={slot}>
@@ -202,7 +179,7 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
 
             {/* Purpose Selector */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-2 flex items-center gap-1.5">
+              <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1.5 flex items-center gap-1.5 font-sans">
                 Purpose of Consultation <span className="text-red-500">*</span>
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -210,29 +187,30 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
                   const Icon = item.icon;
                   const isSelected = formData.purpose === item.id;
                   return (
-                    <div
+                    <button
                       key={item.id}
+                      type="button"
                       onClick={() => setFormData({ ...formData, purpose: item.id })}
-                      className={`p-3 rounded-lg border cursor-pointer transition-all flex items-start gap-2.5 ${
+                      className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-start gap-2.5 transition-all ${
                         isSelected
                           ? 'border-[#363636] bg-[#363636] text-white shadow-sm'
                           : 'border-gray-200 bg-gray-50/70 hover:bg-gray-100 text-[#1F2937]'
                       }`}
                     >
-                      <div className={`p-1.5 rounded-md flex-shrink-0 mt-0.5 ${
-                        isSelected ? 'bg-white/10 text-white' : 'bg-white text-[#363636] border border-gray-200'
+                      <div className={`p-1.5 rounded-lg flex-shrink-0 mt-0.5 ${
+                        isSelected ? 'bg-white/15 text-white' : 'bg-white text-[#363636] border border-gray-200'
                       }`}>
-                        <Icon size={16} />
+                        <Icon size={15} />
                       </div>
-                      <div className="text-left min-w-0">
+                      <div className="min-w-0 flex-1 font-sans">
                         <p className={`font-semibold text-xs sm:text-sm truncate ${isSelected ? 'text-white' : 'text-[#1F2937]'}`}>
                           {item.label}
                         </p>
-                        <p className={`text-[11px] leading-tight mt-0.5 line-clamp-2 ${isSelected ? 'text-gray-300' : 'text-gray-500'}`}>
+                        <p className={`text-[11px] leading-tight mt-0.5 line-clamp-1 sm:line-clamp-2 ${isSelected ? 'text-gray-300' : 'text-gray-500'}`}>
                           {item.desc}
                         </p>
                       </div>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -240,29 +218,29 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
 
             {/* Description Textarea */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1.5 flex items-center gap-1.5">
-                <MessageSquare size={14} className="text-gray-500" /> Simple Description / Details <span className="text-red-500">*</span>
+              <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
+                <MessageSquare size={13} className="text-gray-500" /> Simple Description / Details <span className="text-red-500">*</span>
               </label>
               <textarea
                 required
-                rows={3}
+                rows={2}
                 placeholder="Briefly describe what advice you need (e.g. I am looking for scholarship guidance or profile building help)..."
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-[#1F2937] text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all resize-none placeholder:text-gray-400"
+                className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all resize-none placeholder:text-gray-400 font-sans min-h-[64px] sm:min-h-[76px]"
               />
             </div>
 
             {/* Form Footer Action */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-gray-100">
-              <p className="text-xs text-gray-500 text-center sm:text-left">
+            <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 border-t border-gray-100 font-sans">
+              <p className="text-[11px] sm:text-xs text-gray-500 text-center sm:text-left">
                 Direct WhatsApp redirect to <strong>+92 340 5463601</strong>
               </p>
               <button
                 type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-6 py-3 rounded-lg text-sm shadow-md transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm shadow-md transition-colors"
               >
-                <Send size={16} />
+                <Send size={15} />
                 Send Request via WhatsApp
               </button>
             </div>

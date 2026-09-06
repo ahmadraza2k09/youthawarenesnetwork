@@ -75,7 +75,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-28 px-6 lg:px-8 bg-white">
+    <section id="contact" className="py-16 md:py-28 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Let's Talk"
@@ -83,7 +83,7 @@ export function ContactSection() {
           subtitle="Have questions or want to get involved? We're here to connect, collaborate, and create change together."
         />
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto mb-12 md:mb-16">
           {CONTACT_METHODS.map((item) => {
             const Icon = item.icon;
             const content = item.href ? (
@@ -102,7 +102,7 @@ export function ContactSection() {
             return (
               <div
                 key={item.title}
-                className="bg-white rounded-xl p-8 text-center border border-gray-200 hover:shadow-md transition-shadow duration-200"
+                className="bg-white rounded-xl p-6 md:p-8 text-center border border-gray-200 hover:shadow-md transition-shadow duration-200"
               >
                 <div className="flex justify-center mb-5">
                   <div className="bg-[#363636] p-4 rounded-xl">
@@ -116,7 +116,7 @@ export function ContactSection() {
           })}
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-8 md:p-10 max-w-3xl mx-auto border border-gray-200 mb-12">
+        <div className="bg-gray-50 rounded-xl p-5 sm:p-8 md:p-10 max-w-3xl mx-auto border border-gray-200 mb-12">
           <h3 className="text-2xl font-bold text-[#1F2937] mb-6 text-center">Send us a Message</h3>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
