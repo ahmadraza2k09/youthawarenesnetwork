@@ -77,10 +77,6 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
             <X size={20} />
           </button>
 
-          <span className="font-accent text-xs font-semibold uppercase tracking-widest text-emerald-400 block mb-1">
-            Youth Awareness Network
-          </span>
-
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1 font-sans">
             Book a Free Consultation
           </h2>
