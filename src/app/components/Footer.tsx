@@ -1,5 +1,5 @@
 import { Heart, Lightbulb, Mail, MessageCircle, MapPin, Linkedin, Instagram, Facebook, Youtube, Link } from 'lucide-react';
-import logoImage from '../../assets/826164d80fd732187bfaf088c09dae7c138832fd.png';
+import logoImage from '../../assets/logo.png';
 
 const SOCIAL_LINKS = [
   { icon: Linkedin, href: 'https://www.linkedin.com/company/youthawarenessnetwork/', label: 'LinkedIn' },

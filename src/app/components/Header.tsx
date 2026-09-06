@@ -1,10 +1,11 @@
-import { Menu, X } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import logoImage from '../../assets/826164d80fd732187bfaf088c09dae7c138832fd.png';
+import logoImage from '../../assets/logo.png';
 
 interface HeaderProps {
   activeSection: string;
   onNavigate: (section: string) => void;
+  onBookConsultation: () => void;
 }
 
 const NAV_ITEMS = [
@@ -15,7 +16,7 @@ const NAV_ITEMS = [
   { id: 'contact', label: 'Contact' },
 ];
 
-export function Header({ activeSection, onNavigate }: HeaderProps) {
+export function Header({ activeSection, onNavigate, onBookConsultation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -60,8 +61,14 @@ export function Header({ activeSection, onNavigate }: HeaderProps) {
               </button>
             ))}
             <button
+              onClick={onBookConsultation}
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20bd5a] transition-colors flex items-center gap-1.5 shadow-sm"
+            >
+              <MessageCircle size={16} /> Book Consultation
+            </button>
+            <button
               onClick={() => handleNavClick('join')}
-              className="ml-3 px-5 py-2 rounded-lg text-sm font-semibold bg-white text-[#363636] hover:bg-gray-100 transition-colors"
+              className="ml-2 px-5 py-2 rounded-lg text-sm font-semibold bg-white text-[#363636] hover:bg-gray-100 transition-colors"
             >
               Join Us
             </button>
@@ -78,6 +85,15 @@ export function Header({ activeSection, onNavigate }: HeaderProps) {
 
         {mobileMenuOpen && (
           <nav className="md:hidden pb-4 flex flex-col gap-1 pt-4">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onBookConsultation();
+              }}
+              className="px-4 py-3 rounded-lg text-left text-sm font-semibold bg-[#25D366] text-white flex items-center gap-2 mb-1"
+            >
+              <MessageCircle size={18} /> Book Consultation
+            </button>
             {[...NAV_ITEMS, { id: 'join', label: 'Join Us' }].map((item) => (
               <button
                 key={item.id}

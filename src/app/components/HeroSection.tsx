@@ -1,13 +1,14 @@
-import { ArrowRight } from 'lucide-react';
-import logoImage from '../../assets/826164d80fd732187bfaf088c09dae7c138832fd.png';
+import { ArrowRight, MessageCircle } from 'lucide-react';
+import logoImage from '../../assets/logo.png';
 
 interface HeroSectionProps {
   onJoinClick: () => void;
+  onBookConsultation: () => void;
 }
 
 const TRUST_ITEMS = ['Youth led', 'Free access', 'Global exposure'];
 
-export function HeroSection({ onJoinClick }: HeroSectionProps) {
+export function HeroSection({ onJoinClick, onBookConsultation }: HeroSectionProps) {
   return (
     <section
       id="home"
@@ -37,13 +38,22 @@ export function HeroSection({ onJoinClick }: HeroSectionProps) {
           ))}
         </div>
 
-        <button
-          onClick={onJoinClick}
-          className="inline-flex items-center gap-2 bg-white text-[#363636] px-8 py-4 rounded-lg font-semibold text-base hover:bg-gray-100 transition-colors shadow-lg"
-        >
-          Join Our Movement
-          <ArrowRight size={20} />
-        </button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            onClick={onBookConsultation}
+            className="inline-flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-lg font-semibold text-base hover:bg-[#20bd5a] transition-colors shadow-lg"
+          >
+            <MessageCircle size={20} />
+            Book Free Consultation
+          </button>
+          <button
+            onClick={onJoinClick}
+            className="inline-flex items-center gap-2 bg-white text-[#363636] px-8 py-4 rounded-lg font-semibold text-base hover:bg-gray-100 transition-colors shadow-lg"
+          >
+            Join Our Movement
+            <ArrowRight size={20} />
+          </button>
+        </div>
       </div>
     </section>
   );

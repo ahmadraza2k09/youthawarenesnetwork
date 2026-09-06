@@ -7,9 +7,11 @@ import { ActivitiesSection } from './components/ActivitiesSection';
 import { JoinSection } from './components/JoinSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { ConsultationModal } from './components/ConsultationModal';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -22,6 +24,46 @@ export default function App() {
       setActiveSection(sectionId);
     }
   };
+
+  const handleOpenConsultation = () => {
+    if (window.location.hash !== '#consultation') {
+      window.history.pushState(null, '', '#consultation');
+    }
+    setIsConsultationModalOpen(true);
+  };
+
+  const handleCloseConsultation = () => {
+    if (window.location.hash === '#consultation' || window.location.hash === '#book-consultation') {
+      window.history.pushState(null, '', window.location.pathname);
+    }
+    setIsConsultationModalOpen(false);
+  };
+
+  useEffect(() => {
+    const checkUrlForConsultation = () => {
+      const hash = window.location.hash.toLowerCase();
+      const search = window.location.search.toLowerCase();
+      const pathname = window.location.pathname.toLowerCase();
+
+      if (
+        hash === '#consultation' ||
+        hash === '#book-consultation' ||
+        search.includes('consultation=true') ||
+        pathname.endsWith('/consultation')
+      ) {
+        setIsConsultationModalOpen(true);
+      }
+    };
+
+    checkUrlForConsultation();
+    window.addEventListener('hashchange', checkUrlForConsultation);
+    window.addEventListener('popstate', checkUrlForConsultation);
+
+    return () => {
+      window.removeEventListener('hashchange', checkUrlForConsultation);
+      window.removeEventListener('popstate', checkUrlForConsultation);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,10 +88,17 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-[#1F2937] font-sans">
-      <Header activeSection={activeSection} onNavigate={scrollToSection} />
+      <Header
+        activeSection={activeSection}
+        onNavigate={scrollToSection}
+        onBookConsultation={handleOpenConsultation}
+      />
 
       <main>
-        <HeroSection onJoinClick={() => scrollToSection('join')} />
+        <HeroSection
+          onJoinClick={() => scrollToSection('join')}
+          onBookConsultation={handleOpenConsultation}
+        />
         <AboutSection />
         <MissionSection />
         <ActivitiesSection />
@@ -58,6 +107,11 @@ export default function App() {
       </main>
 
       <Footer />
+
+      <ConsultationModal
+        isOpen={isConsultationModalOpen}
+        onClose={handleCloseConsultation}
+      />
     </div>
   );
 }
