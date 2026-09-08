@@ -40,7 +40,7 @@ export function Header({ activeSection, onNavigate, onBookConsultation }: Header
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center gap-6">
           <button onClick={() => handleNavClick('home')} className="flex items-center gap-3">
-            <img src={logoImage} alt="YAN Logo" className="h-10 w-auto" />
+            <img src={logoImage} alt="YAN Logo" className="h-4.5 md:h-5 w-auto object-contain" />
             <span className="font-semibold text-lg tracking-wide hidden sm:inline">
               Youth Awareness Network
             </span>

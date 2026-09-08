@@ -24,8 +24,8 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <img src={logoImage} alt="YAN Logo" className="h-11 w-auto" />
+            <div className="flex items-center gap-3 mb-3">
+              <img src={logoImage} alt="YAN Logo" className="h-6 md:h-7 w-auto object-contain" />
               <span className="font-bold text-xl">Youth Awareness Network</span>
             </div>
             <p className="text-gray-300 leading-relaxed mb-3">
