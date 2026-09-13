@@ -29,14 +29,11 @@ export function AboutSection() {
           subtitle="Discover the story behind our mission to empower and inspire the next generation."
         />
 
-        <div className="bg-gray-50 p-8 md:p-10 rounded-xl border border-gray-200 mb-16 max-w-4xl mx-auto">
-          <p className="text-gray-700 text-lg mb-5 leading-relaxed text-center">
-            <span className="text-[#363636] font-semibold">Youth Awareness Network (YAN)</span> is a youth led initiative focused on providing free access to awareness, guidance, and global opportunities for students, especially those with limited resources or direction.
+        <div className="bg-gray-50 p-6 sm:p-8 md:p-10 rounded-xl border border-gray-200 mb-12 sm:mb-16 max-w-4xl mx-auto">
+          <p className="text-gray-700 text-base sm:text-lg mb-4 leading-relaxed text-center">
+            <span className="text-[#363636] font-semibold">Youth Awareness Network (YAN)</span> is a youth led initiative providing free guidance, awareness, and global opportunities for students to build strong career paths.
           </p>
-          <p className="text-gray-700 text-lg mb-6 leading-relaxed text-center">
-            We support young individuals in understanding their academic and career paths, building strong profiles, and connecting with international peers through structured programs and virtual exchanges.
-          </p>
-          <p className="font-accent text-[#363636] text-2xl font-semibold text-center">
+          <p className="font-accent text-[#363636] text-xl sm:text-2xl font-semibold text-center">
             Lead by Youth to Lead Youth
           </p>
         </div>

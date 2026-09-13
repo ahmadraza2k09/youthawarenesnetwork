@@ -13,6 +13,7 @@ const QUICK_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About Us' },
   { id: 'mission', label: 'Mission' },
+  { id: 'initiatives', label: 'Our Initiatives' },
   { id: 'activities', label: 'Activities' },
   { id: 'join', label: 'Join Us' },
   { id: 'contact', label: 'Contact' },

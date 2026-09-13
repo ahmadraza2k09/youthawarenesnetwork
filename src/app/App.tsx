@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { MissionSection } from './components/MissionSection';
+import { InitiativesSection } from './components/InitiativesSection';
 import { ActivitiesSection } from './components/ActivitiesSection';
 import { JoinSection } from './components/JoinSection';
 import { ContactSection } from './components/ContactSection';
@@ -67,7 +68,7 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'mission', 'activities', 'join', 'contact'];
+      const sections = ['home', 'about', 'mission', 'initiatives', 'activities', 'join', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections) {
@@ -101,6 +102,7 @@ export default function App() {
         />
         <AboutSection />
         <MissionSection />
+        <InitiativesSection onBookConsultation={handleOpenConsultation} />
         <ActivitiesSection />
         <JoinSection onContactClick={() => scrollToSection('contact')} />
         <ContactSection />

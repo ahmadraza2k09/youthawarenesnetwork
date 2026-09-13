@@ -8,7 +8,7 @@ interface ConsultationModalProps {
 }
 
 const PURPOSES = [
-  { id: 'scholarships', label: 'Scholarships & Financial Aid', icon: GraduationCap, desc: 'Guidance on fully-funded international & local scholarships' },
+  { id: 'scholarships', label: 'Scholarships & Financial Aid', icon: GraduationCap, desc: 'Guidance on fully funded international & local scholarships' },
   { id: 'profile-building', label: 'Profile Building & Resume', icon: FileText, desc: 'CV review, extracurricular roadmap & personal statement' },
   { id: 'career-guidance', label: 'Career Guidance & Mentorship', icon: Compass, desc: 'University selection, major selection & career pathing' },
   { id: 'virtual-exchange', label: 'Virtual Exchange & Exposure', icon: Globe, desc: 'International youth forums, conferences & exchange programs' },
@@ -81,7 +81,7 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
             Book a Free Consultation
           </h2>
           <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pr-8 sm:pr-10">
-            Fill out your details below. You will be redirected directly to WhatsApp (+92 340 5463601) with a pre-filled request.
+            Fill out your details below. You will be redirected directly to WhatsApp (+92 340 5463601) with a pre filled request.
           </p>
         </div>
 

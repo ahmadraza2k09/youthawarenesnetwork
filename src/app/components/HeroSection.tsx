@@ -25,8 +25,8 @@ export function HeroSection({ onJoinClick, onBookConsultation }: HeroSectionProp
           Connecting Youth to Opportunities, Knowledge, and Global Exposure
         </p>
 
-        <p className="text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8">
-          We are a youth led platform committed to providing free access to awareness, guidance, and international opportunities. Our mission is to equip students with the knowledge, exposure, and direction they need to grow beyond limitations.
+        <p className="text-base sm:text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8">
+          A youth led platform providing free access to awareness, guidance, and global opportunities to help students grow beyond limitations.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-gray-200 mb-10">

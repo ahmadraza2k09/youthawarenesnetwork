@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About Us' },
   { id: 'mission', label: 'Mission' },
+  { id: 'initiatives', label: 'Our Initiatives' },
   { id: 'activities', label: 'Activities' },
   { id: 'contact', label: 'Contact' },
 ];
