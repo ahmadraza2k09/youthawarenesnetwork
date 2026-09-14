@@ -9,10 +9,12 @@ import { JoinSection } from './components/JoinSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
+import { WebsiteRequestModal } from './components/WebsiteRequestModal';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
+  const [isWebsiteModalOpen, setIsWebsiteModalOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -40,8 +42,22 @@ export default function App() {
     setIsConsultationModalOpen(false);
   };
 
+  const handleOpenWebsiteRequest = () => {
+    if (window.location.hash !== '#website-request') {
+      window.history.pushState(null, '', '#website-request');
+    }
+    setIsWebsiteModalOpen(true);
+  };
+
+  const handleCloseWebsiteRequest = () => {
+    if (window.location.hash === '#website-request' || window.location.hash === '#request-website') {
+      window.history.pushState(null, '', window.location.pathname);
+    }
+    setIsWebsiteModalOpen(false);
+  };
+
   useEffect(() => {
-    const checkUrlForConsultation = () => {
+    const checkUrlForModals = () => {
       const hash = window.location.hash.toLowerCase();
       const search = window.location.search.toLowerCase();
       const pathname = window.location.pathname.toLowerCase();
@@ -54,15 +70,24 @@ export default function App() {
       ) {
         setIsConsultationModalOpen(true);
       }
+
+      if (
+        hash === '#website-request' ||
+        hash === '#request-website' ||
+        search.includes('website=true') ||
+        pathname.endsWith('/website-request')
+      ) {
+        setIsWebsiteModalOpen(true);
+      }
     };
 
-    checkUrlForConsultation();
-    window.addEventListener('hashchange', checkUrlForConsultation);
-    window.addEventListener('popstate', checkUrlForConsultation);
+    checkUrlForModals();
+    window.addEventListener('hashchange', checkUrlForModals);
+    window.addEventListener('popstate', checkUrlForModals);
 
     return () => {
-      window.removeEventListener('hashchange', checkUrlForConsultation);
-      window.removeEventListener('popstate', checkUrlForConsultation);
+      window.removeEventListener('hashchange', checkUrlForModals);
+      window.removeEventListener('popstate', checkUrlForModals);
     };
   }, []);
 
@@ -102,7 +127,10 @@ export default function App() {
         />
         <AboutSection />
         <MissionSection />
-        <InitiativesSection onBookConsultation={handleOpenConsultation} />
+        <InitiativesSection
+          onBookConsultation={handleOpenConsultation}
+          onOpenWebsiteRequest={handleOpenWebsiteRequest}
+        />
         <ActivitiesSection />
         <JoinSection onContactClick={() => scrollToSection('contact')} />
         <ContactSection />
@@ -113,6 +141,11 @@ export default function App() {
       <ConsultationModal
         isOpen={isConsultationModalOpen}
         onClose={handleCloseConsultation}
+      />
+
+      <WebsiteRequestModal
+        isOpen={isWebsiteModalOpen}
+        onClose={handleCloseWebsiteRequest}
       />
     </div>
   );

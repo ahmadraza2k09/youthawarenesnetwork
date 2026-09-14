@@ -22,6 +22,9 @@ const TIME_SLOTS = [
   'Evening (6:00 PM - 9:00 PM)',
 ];
 
+const TARGET_EMAIL = 'youthawarenessnetwork@gmail.com';
+const TARGET_WHATSAPP = '923405463601';
+
 export function ConsultationModal({ isOpen, onClose, initialPurpose }: ConsultationModalProps) {
   const [formData, setFormData] = useState({
     name: '',
@@ -32,28 +35,50 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
     description: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [lastAction, setLastAction] = useState<'email' | 'whatsapp' | null>(null);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const generateMessage = () => {
     const selectedPurposeObj = PURPOSES.find((p) => p.id === formData.purpose);
     const purposeText = selectedPurposeObj ? selectedPurposeObj.label : formData.purpose;
 
-    const rawMessage = `FREE CONSULTATION REQUEST\nYouth Awareness Network\n\nFull Name: ${formData.name}\nPhone / WhatsApp: ${formData.phone || 'Not provided'}\nEmail: ${formData.email || 'Not provided'}\nPurpose: ${purposeText}\nPreferred Time: ${formData.timeSlot}\n\nDetails & Query:\n${formData.description || 'No additional details provided.'}\n\n---\nSent via YAN Official Website`;
+    return `FREE CONSULTATION REQUEST
+Youth Awareness Network
 
-    const whatsappNumber = '923405463601';
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(rawMessage)}`;
+Full Name: ${formData.name || '[Not Specified]'}
+Phone / WhatsApp: ${formData.phone || 'Not provided'}
+Email: ${formData.email || 'Not provided'}
+Purpose: ${purposeText}
+Preferred Time: ${formData.timeSlot}
 
+Details & Query:
+${formData.description || 'No additional details provided.'}
+
+---
+Sent via YAN Official Website (${TARGET_EMAIL})`;
+  };
+
+  const getEmailSubject = () => {
+    const nameStr = formData.name ? ` - ${formData.name}` : '';
+    return `Free Consultation Request${nameStr}`;
+  };
+
+  const handleSendEmail = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const rawMessage = generateMessage();
+    const subject = getEmailSubject();
+    const mailtoUrl = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawMessage)}`;
+    window.location.href = mailtoUrl;
+    setLastAction('email');
+  };
+
+  const handleSendWhatsApp = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const rawMessage = generateMessage();
+    const whatsappUrl = `https://wa.me/${TARGET_WHATSAPP}?text=${encodeURIComponent(rawMessage)}`;
     window.open(whatsappUrl, '_blank');
-    setSubmitted(true);
-
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-    }, 4000);
+    setLastAction('whatsapp');
   };
 
   return (
@@ -81,33 +106,49 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
             Book a Free Consultation
           </h2>
           <p className="text-gray-300 text-xs sm:text-sm leading-relaxed pr-8 sm:pr-10">
-            Fill out your details below. You will be redirected directly to WhatsApp (+92 340 5463601) with a pre filled request.
+            Fill out your details to create a ready-made request. Send effortlessly via <strong>Email</strong> or <strong>WhatsApp</strong>.
           </p>
         </div>
 
         {/* Modal Body */}
-        {submitted ? (
+        {lastAction ? (
           <div className="p-6 sm:p-10 text-center bg-gray-50 flex-1 flex flex-col items-center justify-center">
             <div className="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 border border-green-200">
               <CheckCircle size={32} />
             </div>
             <h3 className="text-xl font-bold text-[#1F2937] mb-2 font-sans">
-              Redirecting to WhatsApp...
+              {lastAction === 'email' ? 'Opening Email Client...' : 'Redirecting to WhatsApp...'}
             </h3>
             <p className="text-gray-600 text-sm max-w-md mx-auto mb-6 leading-relaxed">
-              Your consultation details are formatted. Click <strong>Send</strong> in WhatsApp to complete your message to +92 340 5463601.
+              {lastAction === 'email'
+                ? 'Your consultation request has been pre-filled into your email application.'
+                : 'Your consultation request is formatted and pre-filled in WhatsApp. Click Send to complete.'}
             </p>
-            <a
-              href="https://wa.me/923405463601"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors shadow-md"
-            >
-              <MessageSquare size={18} /> Open WhatsApp Directly
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href={`mailto:${TARGET_EMAIL}?subject=${encodeURIComponent(getEmailSubject())}&body=${encodeURIComponent(generateMessage())}`}
+                className="inline-flex items-center justify-center gap-2 bg-[#363636] hover:bg-[#4a4a4a] text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors shadow-md"
+              >
+                <Mail size={16} /> Open Email Client
+              </a>
+              <a
+                href={`https://wa.me/${TARGET_WHATSAPP}?text=${encodeURIComponent(generateMessage())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors shadow-md"
+              >
+                <MessageSquare size={16} /> Open WhatsApp
+              </a>
+              <button
+                onClick={() => setLastAction(null)}
+                className="inline-flex items-center justify-center gap-1.5 bg-gray-200 hover:bg-gray-300 text-[#1F2937] font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition-colors"
+              >
+                Edit Form
+              </button>
+            </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-3.5 sm:space-y-4 overflow-y-auto flex-1">
+          <form className="p-4 sm:p-6 space-y-3.5 sm:space-y-4 overflow-y-auto flex-1">
             
             {/* Input Row 1: Name & Phone */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -127,11 +168,10 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
 
               <div>
                 <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
-                  <Phone size={13} className="text-gray-500" /> Phone / WhatsApp <span className="text-red-500">*</span>
+                  <Phone size={13} className="text-gray-500" /> Phone / WhatsApp
                 </label>
                 <input
                   type="tel"
-                  required
                   placeholder="+92 3XX XXXXXXX"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -215,30 +255,40 @@ export function ConsultationModal({ isOpen, onClose, initialPurpose }: Consultat
             {/* Description Textarea */}
             <div>
               <label className="block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5 font-sans">
-                <MessageSquare size={13} className="text-gray-500" /> Simple Description / Details <span className="text-red-500">*</span>
+                <MessageSquare size={13} className="text-gray-500" /> Simple Description / Details
               </label>
               <textarea
-                required
                 rows={2}
                 placeholder="Briefly describe what advice you need (e.g. I am looking for scholarship guidance or profile building help)..."
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all resize-none placeholder:text-gray-400 font-sans min-h-[64px] sm:min-h-[76px]"
+                className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-gray-300 bg-white text-[#1F2937] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#363636]/20 focus:border-[#363636] transition-all resize-none placeholder:text-gray-400 font-sans min-h-[64px]"
               />
             </div>
 
-            {/* Form Footer Action */}
-            <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 border-t border-gray-100 font-sans">
+            {/* Form Footer Actions: Send via Email OR WhatsApp */}
+            <div className="pt-2 sm:pt-3 border-t border-gray-100 font-sans space-y-2">
               <p className="text-[11px] sm:text-xs text-gray-500 text-center sm:text-left">
-                Direct WhatsApp redirect to <strong>+92 340 5463601</strong>
+                Send request via Email or WhatsApp:
               </p>
-              <button
-                type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm shadow-md transition-colors"
-              >
-                <Send size={15} />
-                Send Request via WhatsApp
-              </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <button
+                  type="button"
+                  onClick={handleSendEmail}
+                  className="inline-flex items-center justify-center gap-2 bg-[#363636] hover:bg-[#4a4a4a] text-white font-semibold px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm shadow-md transition-colors"
+                >
+                  <Mail size={16} />
+                  Send via Email
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSendWhatsApp}
+                  className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm shadow-md transition-colors"
+                >
+                  <Send size={16} />
+                  Send via WhatsApp
+                </button>
+              </div>
             </div>
 
           </form>
