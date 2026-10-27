@@ -1,4 +1,4 @@
-import { Globe, Compass, MessageCircle, FileCheck, ExternalLink, GraduationCap, FileText, Layers, BookOpen, ArrowUpRight, CheckCircle2, Mail, Send, Building2 } from 'lucide-react';
+import { Globe, Compass, MessageCircle, FileCheck, GraduationCap, FileText, Layers, BookOpen, ArrowUpRight, CheckCircle2, Mail, Send, Building2, Users } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
 interface InitiativesSectionProps {
@@ -58,6 +58,44 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
           title="Our Initiatives"
           subtitle="Free digital services, interactive platforms, and mentorship empowering youth worldwide."
         />
+
+        {/* Impact Section - Single Line */}
+        <div id="impact" className="bg-[#292626] text-white rounded-2xl p-6 sm:p-8 mb-10 md:mb-12 shadow-sm border border-gray-800">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-gray-700/60">
+            <div className="pt-3 sm:pt-0">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-1 font-sans tracking-tight">
+                70+
+              </div>
+              <div className="text-xs sm:text-sm text-gray-300 font-medium">
+                Awareness Sessions Delivered
+              </div>
+            </div>
+            <div className="pt-3 sm:pt-0">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-1 font-sans tracking-tight">
+                30+
+              </div>
+              <div className="text-xs sm:text-sm text-gray-300 font-medium">
+                Websites Delivered
+              </div>
+            </div>
+            <div className="pt-3 sm:pt-0">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-1 font-sans tracking-tight">
+                4+
+              </div>
+              <div className="text-xs sm:text-sm text-gray-300 font-medium">
+                Management Systems Provided
+              </div>
+            </div>
+            <div className="pt-3 sm:pt-0">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-1 font-sans tracking-tight">
+                2000+
+              </div>
+              <div className="text-xs sm:text-sm text-gray-300 font-medium">
+                Students Impacted
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">
           {/* Initiative 1: Digitizing for All */}
@@ -166,23 +204,14 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
               </div>
             </div>
 
-            <div className="pt-2 border-t border-gray-100 flex flex-col sm:flex-row gap-2.5">
+            <div className="pt-2 border-t border-gray-100">
               <button
                 onClick={onOpenWebsiteRequest}
-                className="inline-flex items-center justify-center gap-2 flex-1 bg-[#363636] hover:bg-[#4a4a4a] text-white font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors shadow-sm"
+                className="inline-flex items-center justify-center gap-2 w-full bg-[#363636] hover:bg-[#4a4a4a] text-white font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors shadow-sm"
               >
                 <span>Request Digital Solution</span>
                 <Globe size={16} />
               </button>
-              <a
-                href="https://drive.google.com/file/d/1W2CI5mH99sAbWXcp4_vDMko6m0Qi4mL2/view"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 bg-gray-100 hover:bg-gray-200 text-[#363636] font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors"
-              >
-                <span>Overview PDF</span>
-                <ExternalLink size={15} />
-              </a>
             </div>
           </div>
 
