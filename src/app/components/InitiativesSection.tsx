@@ -1,4 +1,4 @@
-import { Globe, Compass, MessageCircle, FileCheck, ExternalLink, GraduationCap, FileText, Layers, BookOpen, ArrowUpRight, CheckCircle2, Mail, Send } from 'lucide-react';
+import { Globe, Compass, MessageCircle, FileCheck, ExternalLink, GraduationCap, FileText, Layers, BookOpen, ArrowUpRight, CheckCircle2, Mail, Send, Building2 } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
 interface InitiativesSectionProps {
@@ -9,20 +9,21 @@ interface InitiativesSectionProps {
 const TARGET_EMAIL = 'youthawarenessnetwork@gmail.com';
 const TARGET_WHATSAPP = '923405463601';
 
-const DEFAULT_WEBSITE_MSG = `WEBSITE REQUEST FOR INSTITUTION
-Youth Awareness Network - Digitizing Institutions Initiative
+const DEFAULT_DIGITAL_SOLUTION_MSG = `DIGITAL SOLUTION REQUEST
+Youth Awareness Network - Digitizing for All
 
 Hello YAN Team,
 
-I am writing to request a free website for our school / NGO / organization.
+I am writing to request a digital solution for our organization through the Digitizing for All initiative.
 
-Institution Name: [Name of your School or NGO]
-Type: [School / College / NGO / Community Group]
+Organization Name: [Name of your Organization]
+Organization Type: [Small Business / Educational Institution / Hospital & Clinic / NGO / Other]
 Location: [City, Country]
 Contact Person: [Your Name]
-Phone / WhatsApp: [Your Phone Number]
+Required Digital Service: [Free Website Development / Customized Management System / Responsive Design & Digital Solutions / Technical Setup & Support]
+Brief Description of Requirements: [Brief description of what your organization needs]
 
-We would love to connect with YAN to discuss setting up our official website.
+We would love to connect with YAN to discuss setting up our digital solution.
 
 ---
 Sent via YAN Official Website (${TARGET_EMAIL})`;
@@ -44,8 +45,8 @@ Please let me know the available time slots.
 Sent via YAN Official Website (${TARGET_EMAIL})`;
 
 export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }: InitiativesSectionProps) {
-  const websiteEmailLink = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent('Website Request for School / NGO / Organization')}&body=${encodeURIComponent(DEFAULT_WEBSITE_MSG)}`;
-  const websiteWhatsAppLink = `https://wa.me/${TARGET_WHATSAPP}?text=${encodeURIComponent(DEFAULT_WEBSITE_MSG)}`;
+  const websiteEmailLink = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent('Digital Solution Request - Digitizing for All')}&body=${encodeURIComponent(DEFAULT_DIGITAL_SOLUTION_MSG)}`;
+  const websiteWhatsAppLink = `https://wa.me/${TARGET_WHATSAPP}?text=${encodeURIComponent(DEFAULT_DIGITAL_SOLUTION_MSG)}`;
 
   const consultationEmailLink = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent('Free Consultation Session Request')}&body=${encodeURIComponent(DEFAULT_CONSULTATION_MSG)}`;
 
@@ -59,7 +60,7 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">
-          {/* Initiative 1: Digitizing Institutions Globally */}
+          {/* Initiative 1: Digitizing for All */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-28 h-28 bg-[#363636]/5 rounded-bl-full pointer-events-none transition-transform duration-300 group-hover:scale-110" />
             
@@ -69,23 +70,29 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
                   <Globe size={26} />
                 </div>
                 <span className="inline-flex items-center gap-1 bg-[#363636]/10 text-[#363636] text-xs font-bold px-3 py-1.5 rounded-full">
-                  Get Free Website
+                  Free Digital Services
                 </span>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-[#1F2937] mb-2.5">
-                Digitizing Institutions Globally
+                Digitizing for All
               </h3>
 
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
-                Free websites and digital services to underserved educational institutes and growing NGOs. Over 10 websites provided so far in Pakistan.
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                Providing free websites, customized management systems, and other digital services to small businesses, educational institutions, hospitals and clinics, and NGOs worldwide.
               </p>
 
-              {/* Theme-styled Callout Box for Website Request */}
+              {/* Project Evolution Note */}
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 mb-4 text-xs text-gray-600 leading-relaxed">
+                <span className="font-semibold text-[#1F2937]">Project Evolution: </span>
+                Previously focused on educational institutions and NGOs, the initiative has now expanded to support a wider range of organizations.
+              </div>
+
+              {/* Theme-styled Callout Box for Digital Solution Request */}
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 sm:p-4 mb-4">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2937] mb-1 flex items-center gap-1.5">
                   <Globe size={14} className="text-[#363636]" />
-                  Get a Website for Your School, NGO or Organization
+                  Request a Digital Solution
                 </h4>
                 <p className="text-xs text-gray-600 leading-relaxed mb-3">
                   A ready-made request message will be generated automatically for instant submission via Email or WhatsApp!
@@ -114,23 +121,46 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
                 </div>
               </div>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 sm:p-4 mb-6 space-y-2">
+              {/* Digital Services */}
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 sm:p-4 mb-4 space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#363636]">
                   <Layers size={14} className="text-[#363636]" />
-                  Key Digital Services
+                  Digital Services
                 </div>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-600">
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Free website development
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Free Website Development
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> NGO & school portals
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Customized Management Systems
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Mobile responsive design
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Responsive Design and Digital Solutions
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Technical setup & support
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Technical Setup and Support
+                  </li>
+                </ul>
+              </div>
+
+              {/* Eligible Organizations */}
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 sm:p-4 mb-6 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#363636]">
+                  <Building2 size={14} className="text-[#363636]" />
+                  Eligible Organizations
+                </div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-600">
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Small Businesses
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Educational Institutions
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> Hospitals and Clinics
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} className="text-[#363636] flex-shrink-0" /> NGOs and Community Organizations
                   </li>
                 </ul>
               </div>
@@ -141,7 +171,7 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
                 onClick={onOpenWebsiteRequest}
                 className="inline-flex items-center justify-center gap-2 flex-1 bg-[#363636] hover:bg-[#4a4a4a] text-white font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors shadow-sm"
               >
-                <span>Request Institution Website</span>
+                <span>Request Digital Solution</span>
                 <Globe size={16} />
               </button>
               <a
@@ -329,9 +359,9 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
         {/* Bottom Banner */}
         <div className="bg-[#363636] text-white rounded-2xl p-6 sm:p-8 text-center shadow-sm flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
           <div className="text-left max-w-2xl">
-            <h4 className="text-lg sm:text-xl font-bold mb-1">Need a website or digital support for your school or NGO?</h4>
+            <h4 className="text-lg sm:text-xl font-bold mb-1">Need a website, management system, or digital solution?</h4>
             <p className="text-gray-300 text-xs sm:text-sm">
-              We collaborate with underserved schools and NGOs to provide free websites and digital resources. Send a ready-made request via Email or WhatsApp.
+              We collaborate with small businesses, educational institutions, clinics, and NGOs worldwide to provide free websites, systems, and digital support. Send a ready-made request via Email or WhatsApp.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-2.5 w-full md:w-auto">
@@ -339,7 +369,7 @@ export function InitiativesSection({ onBookConsultation, onOpenWebsiteRequest }:
               onClick={onOpenWebsiteRequest}
               className="inline-flex items-center justify-center gap-2 bg-white text-[#363636] hover:bg-gray-100 font-semibold px-5 py-3 rounded-xl text-xs sm:text-sm transition-colors whitespace-nowrap shadow-md"
             >
-              <Globe size={16} /> Get Institution Website
+              <Globe size={16} /> Request Digital Solution
             </button>
             <button
               onClick={onBookConsultation}

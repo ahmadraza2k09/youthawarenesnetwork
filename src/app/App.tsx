@@ -50,7 +50,12 @@ export default function App() {
   };
 
   const handleCloseWebsiteRequest = () => {
-    if (window.location.hash === '#website-request' || window.location.hash === '#request-website') {
+    if (
+      window.location.hash === '#website-request' ||
+      window.location.hash === '#request-website' ||
+      window.location.hash === '#digitizing-for-all' ||
+      window.location.hash === '#digital-solution'
+    ) {
       window.history.pushState(null, '', window.location.pathname);
     }
     setIsWebsiteModalOpen(false);
@@ -74,8 +79,12 @@ export default function App() {
       if (
         hash === '#website-request' ||
         hash === '#request-website' ||
+        hash === '#digitizing-for-all' ||
+        hash === '#digital-solution' ||
         search.includes('website=true') ||
-        pathname.endsWith('/website-request')
+        search.includes('digitizing=true') ||
+        pathname.endsWith('/website-request') ||
+        pathname.endsWith('/digitizing-for-all')
       ) {
         setIsWebsiteModalOpen(true);
       }
