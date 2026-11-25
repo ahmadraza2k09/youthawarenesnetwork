@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
+import { FounderSection } from './components/FounderSection';
 import { MissionSection } from './components/MissionSection';
 import { InitiativesSection } from './components/InitiativesSection';
 import { ActivitiesSection } from './components/ActivitiesSection';
@@ -11,19 +12,21 @@ import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
 import { WebsiteRequestModal } from './components/WebsiteRequestModal';
 
+const SECTION_IDS = ['home', 'about', 'founder', 'mission', 'initiatives', 'activities', 'join', 'contact'] as const;
+
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
   const [isWebsiteModalOpen, setIsWebsiteModalOpen] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId: string, behavior: ScrollBehavior = 'smooth') => {
     const element = document.getElementById(sectionId);
     if (element) {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      window.scrollTo({ top: offsetPosition, behavior });
       setActiveSection(sectionId);
     }
   };
@@ -88,6 +91,11 @@ export default function App() {
       ) {
         setIsWebsiteModalOpen(true);
       }
+
+      const targetSection = hash.replace(/^#/, '');
+      if ((SECTION_IDS as readonly string[]).includes(targetSection)) {
+        requestAnimationFrame(() => scrollToSection(targetSection, 'auto'));
+      }
     };
 
     checkUrlForModals();
@@ -102,10 +110,9 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'mission', 'initiatives', 'activities', 'join', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
-      for (const sectionId of sections) {
+      for (const sectionId of SECTION_IDS) {
         const element = document.getElementById(sectionId);
         if (element) {
           const { offsetTop, offsetHeight } = element;
@@ -135,6 +142,7 @@ export default function App() {
           onBookConsultation={handleOpenConsultation}
         />
         <AboutSection />
+        <FounderSection />
         <MissionSection />
         <InitiativesSection
           onBookConsultation={handleOpenConsultation}

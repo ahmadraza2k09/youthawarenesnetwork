@@ -12,6 +12,7 @@ const SOCIAL_LINKS = [
 const QUICK_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About Us' },
+  { id: 'founder', label: 'Founder' },
   { id: 'mission', label: 'Mission' },
   { id: 'initiatives', label: 'Our Initiatives' },
   { id: 'activities', label: 'Activities' },

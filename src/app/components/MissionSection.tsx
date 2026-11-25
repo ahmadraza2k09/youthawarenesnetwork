@@ -26,7 +26,7 @@ const MISSIONS = [
 
 export function MissionSection() {
   return (
-    <section id="mission" className="py-24 md:py-28 px-6 lg:px-8 bg-gray-50">
+    <section id="mission" className="py-24 md:py-28 px-6 lg:px-8 bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Our Purpose"

@@ -11,6 +11,7 @@ interface HeaderProps {
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About Us' },
+  { id: 'founder', label: 'Founder' },
   { id: 'mission', label: 'Mission' },
   { id: 'initiatives', label: 'Our Initiatives' },
   { id: 'activities', label: 'Activities' },
@@ -40,19 +41,19 @@ export function Header({ activeSection, onNavigate, onBookConsultation }: Header
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center gap-6">
-          <button onClick={() => handleNavClick('home')} className="flex items-center gap-3">
+          <button onClick={() => handleNavClick('home')} className="flex items-center gap-3 shrink-0">
             <img src={logoImage} alt="YAN Logo" className="h-4.5 md:h-5 w-auto object-contain" />
-            <span className="font-semibold text-lg tracking-wide hidden sm:inline">
+            <span className="font-semibold text-lg tracking-wide hidden sm:inline whitespace-nowrap">
               Youth Awareness Network
             </span>
           </button>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-0.5">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   activeSection === item.id
                     ? 'bg-white text-[#363636]'
                     : 'text-gray-200 hover:bg-white/10 hover:text-white'
@@ -63,20 +64,20 @@ export function Header({ activeSection, onNavigate, onBookConsultation }: Header
             ))}
             <button
               onClick={onBookConsultation}
-              className="ml-2 px-4 py-2 rounded-lg text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20bd5a] transition-colors flex items-center gap-1.5 shadow-sm"
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap bg-[#25D366] text-white hover:bg-[#20bd5a] transition-colors flex items-center gap-1.5 shadow-sm"
             >
               <MessageCircle size={16} /> Book Consultation
             </button>
             <button
               onClick={() => handleNavClick('join')}
-              className="ml-2 px-5 py-2 rounded-lg text-sm font-semibold bg-white text-[#363636] hover:bg-gray-100 transition-colors"
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap bg-white text-[#363636] hover:bg-gray-100 transition-colors"
             >
               Join Us
             </button>
           </nav>
 
           <button
-            className="md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
+            className="xl:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -85,7 +86,7 @@ export function Header({ activeSection, onNavigate, onBookConsultation }: Header
         </div>
 
         {mobileMenuOpen && (
-          <nav className="md:hidden pb-4 flex flex-col gap-1 pt-4">
+          <nav className="xl:hidden pb-4 flex flex-col gap-1 pt-4">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
